@@ -38,7 +38,7 @@ foreach($artists_uri as $artist_uri) {
     $query = 'INSERT INTO `media_artists` (`nick_name`,`full_name`,`city`,`description`) 
               VALUES (:nick_name, :full_name, :city, :description)';
     $stmt = $dbh->prepare($query);
-    // $stmt->execute($params);
+    $stmt->execute($params);
 
     $tracks = $api->get_tracks($artist_uri);
 
