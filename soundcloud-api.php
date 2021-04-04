@@ -6,11 +6,24 @@ class SoundCloudApi
 {
     public $client;
 
+    // init http client guzzle
     public function __construct()
     {
         $this->client = new GuzzleHttp\Client(['base_uri' => BASE_URL]);
     }
 
+    /**********************************/
+    /* get_artist_info($artist_uri)
+    /* params:
+    /* $artist_uri - uri of artist on soundcloud,
+    /* in soundcloud.com/lakeyinspired is lakeyinspired
+    /* return: assoc array
+    /* artist params in array
+    /* array[':nick_name']
+    /* array[':full_name'] 
+    /* array[':city']
+    /* array[':description'] 
+    /**********************************/
     public function get_artist_info($artist_uri)
     {
         $response = $this->client->request('GET', '/' . $artist_uri);
@@ -35,6 +48,18 @@ class SoundCloudApi
         return $params;
     }
 
+    /**********************************/
+    /* get_tracks($artist_uri)
+    /* params:
+    /* $artist_uri - uri of artist on soundcloud,
+    /* in soundcloud.com/lakeyinspired is lakeyinspired
+    /* return: nested array
+    /* tracks in array 1 level
+    /* tracks params in array 2 level
+    /* array[':title']
+    /* array[':published'] 
+    /* array[':genre']
+    /**********************************/
     public function get_tracks($artist_uri)
     {
         $response = $this->client->request('GET', '/' . $artist_uri . '/tracks');

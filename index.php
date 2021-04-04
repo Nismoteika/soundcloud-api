@@ -18,6 +18,14 @@ $artists_uri = [
     'dekobe',
 ];
 
+/**********************************/
+/* get_artist_id($nick_name, $dbh)
+/* params:
+/* $nick_name - artist nickname
+/* $dbh - db connect object
+/* return: int
+/* integer - id of artist in `media_artists` table
+/**********************************/
 function get_artist_id($nick_name, $dbh) {
     $query = 'SELECT `id`,`nick_name` FROM `media_artists` WHERE `nick_name` = ?';
 
@@ -31,6 +39,7 @@ function get_artist_id($nick_name, $dbh) {
     return 0;
 }
 
+// get all artists & tracks and write to db
 foreach($artists_uri as $artist_uri) {
 
     $params = $api->get_artist_info($artist_uri);
